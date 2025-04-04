@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Заголовок</title>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <style>
+        /* Общие стили */
+        .cell {
+            display: inline-block;
+            width: 230px;
+            height: auto;
+            border: 1px solid #ccc;
+            text-align: center;
+            vertical-align: top;
+            font-size: 16px;
+            padding: 10px;
+            box-sizing: border-box; /* Добавлено для корректного расчёта размеров */
+        }
+        .cell.empty {
+            background-color: #eee;
+        }
+        .animal { margin-bottom: 5px; }
+        .grass { margin-top: 10px; font-weight: bold;  }
+        .cell-number { font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px; }
+        .row { display: flex;
+            flex-wrap: wrap;
+        }
+
+        /* Стили для 3-колоночного отображения */
+        .animals-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1px;
+        }
+        .animal {
+            flex: 0 0 calc(50% - 10px);
+            box-sizing: border-box;
+            padding: 0 5px;
+            font-size: 14px;
+            white-space: nowrap; /* Запрещаем перенос текста */
+            overflow: visible; /* Показываем весь текст */
+            text-overflow: clip; /* Отключаем многоточие */
+            min-width: max-content; /* Минимальная ширина по содержимому */
+        }
+    </style>
+</head>
+<body>
+<h1 th:text="${title}">Заголовок</h1>
+<div id="grid">
+    <div class="row">
+        <div class="cell empty">
+            <div>Загрузка данных...</div>
+        </div>
+    </div>
+</div>
+<script>
+    /**
+     * Функция для отображения данных.
+     * @param data Данные в формате JSON.
+     */
+    function renderData(data) {
+        const grid = d3.select('#grid');
+        grid.html('');
+
+        const cells = data.cells || []; // Защита от отсутствия cells
+
+        // Разбиваем на строки по 10 ячеек
+        const rows = [];
+        for (let i = 0; i < cells.length; i += 10) {
+            rows.push(cells.slice(i, i + 10));
+        }
+
+        rows.forEach((row, rowIndex) => {
+            const rowDiv = grid.append('div').attr('class', 'row');
+
+            row.forEach((cell, cellIndex) => {
+                if (!cell) return;
+
+                const animals = cell.animals || [];
+                const grassAmount = cell.grassAmount || 0;
+
+                const cellDiv = rowDiv.append('div')
+                    .attr('class', animals.length > 0 ? 'cell' : 'cell empty');
+
+                cellDiv.append('div')
+                    .attr('class', 'cell-number')
+                    .text(`Ячейка №${cell.index !== undefined ? cell.index + 1 : rowIndex * 10 + cellIndex + 1}`);
+
+                if (animals.length === 0) {
+                    cellDiv.append('div').text('Пусто');
+                } else {
+                    // Создаем контейнер для животных
+                    const animalsContainer = cellDiv.append('div')
+                        .attr('class', 'animals-container');
+
+                    // Добавляем животных
+                    animals.forEach(animal => {
+                        animalsContainer.append('div')
+                            .attr('class', 'animal')
+                            .text(`${animal.symbol} ${animal.name}: ${animal.count}`);
+                    });
+                }
+
+                cellDiv.append('div')
+                    .attr('class', 'grass')
+                    .text(`Трава 🌿🍀🌱: ${grassAmount}`);
+            });
+        });
+    }
+
+    /**
+     * Подключение к серверу через SSE.
+     */
+    const eventSource = new EventSource('http://localhost:8080/events');
+
+    // Обработка входящих сообщений
+    eventSource.onmessage = function(event) {
+        try {
+            const newData = JSON.parse(event.data);
+            if (!newData.cells) throw new Error("Некорректный формат данных");
+            //  renderData(newData);
+            renderData(JSON.parse(event.data));
+        } catch (error) {
+            console.error('Ошибка парсинга данных:', error);
+        }
+    };
+
+
+    //Обработка ошибок
+    eventSource.onerror = function() {
+        setTimeout(() => {
+            new EventSource('http://localhost:8080/events');
+        }, 1000);
+    };
+
+</script>
+</body>
+</html>

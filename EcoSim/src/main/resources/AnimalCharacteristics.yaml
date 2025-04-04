@@ -1,0 +1,106 @@
+animalCharacteristics:
+  WOLF:
+    name: "Волк"
+    symbol: "🐺"
+    weightKg: 50
+    maxCountCell: 30
+    movementSpeed: 3
+    foodRequirementKg: 8
+  SNAKE:
+    name: "Змея"
+    symbol: "🐍"
+    weightKg: 15
+    maxCountCell: 30
+    movementSpeed: 1
+    foodRequirementKg: 3
+  FOX:
+    name: "Лиса"
+    symbol: "🦊"
+    weightKg: 8
+    maxCountCell: 30
+    movementSpeed: 2
+    foodRequirementKg: 2
+  BEAR:
+    name: "Медведь"
+    symbol: "🐻"
+    weightKg: 500
+    maxCountCell: 5
+    movementSpeed: 2
+    foodRequirementKg: 80
+  EAGLE:
+    name: "Орёл"
+    symbol: "🦅"
+    weightKg: 6
+    maxCountCell: 20
+    movementSpeed: 3
+    foodRequirementKg: 1
+  HORSE:
+    name: "Лошадь"
+    symbol: "🐎"
+    weightKg: 400
+    maxCountCell: 20
+    movementSpeed: 4
+    foodRequirementKg: 60
+  DEER:
+    name: "Олень"
+    symbol: "🦌"
+    weightKg: 300
+    maxCountCell: 20
+    movementSpeed: 4
+    foodRequirementKg: 50
+  RABBIT:
+    name: "Заяц"
+    symbol: "🐇"
+    weightKg: 2
+    maxCountCell: 150
+    movementSpeed: 2
+    foodRequirementKg: 0.45
+  MOUSE:
+    name: "Мышь"
+    symbol: "🐁"
+    weightKg: 0.05
+    maxCountCell: 500
+    movementSpeed: 1
+    foodRequirementKg: 0.01
+  GOAT:
+    name: "Коза"
+    symbol: "🐐"
+    weightKg: 60
+    maxCountCell: 140
+    movementSpeed: 3
+    foodRequirementKg: 10
+  SHEEP:
+    name: "Овца"
+    symbol: "🐑"
+    weightKg: 70
+    maxCountCell: 140
+    movementSpeed: 3
+    foodRequirementKg: 15
+  BOAR:
+    name: "Кабан"
+    symbol: "🐗"
+    weightKg: 400
+    maxCountCell: 50
+    movementSpeed: 2
+    foodRequirementKg: 50
+  BISON:
+    name: "Бизон"
+    symbol: "🐃"
+    weightKg: 700
+    maxCountCell: 10
+    movementSpeed: 3
+    foodRequirementKg: 100
+  DUCK:
+    name: "Утка"
+    symbol: "🦆"
+    weightKg: 1
+    maxCountCell: 200
+    movementSpeed: 4
+    foodRequirementKg: 0.15
+  BUG:
+    name: "Жук"
+    symbol: "🐛"
+    weightKg: 0.01
+    maxCountCell: 1000
+    movementSpeed: 0
+    foodRequirementKg: 0

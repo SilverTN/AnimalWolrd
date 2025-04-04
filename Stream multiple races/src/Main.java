@@ -11,6 +11,8 @@ public class Main {
         System.out.printf("Общее количество золота по расе %s = %d%n", race,GameStatistics.allSumGoldRace(race));
 
         System.out.println("\n" + GameStatistics.listGame());
+
+        new Thread(()-> System.out.println("ПОТОК")).start();
     }
 }
 

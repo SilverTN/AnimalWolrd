@@ -5,9 +5,11 @@
 // + посчитать общее количество золота по расе
 // - найти второго по количеству золота на каждой клетке
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class GameStatistics {
 
