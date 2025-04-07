@@ -41,8 +41,12 @@
 
 | Категория       | Технологии                          |
 |----------------|-----------------------------------|
-| **Backend**    | Spring Boot, WebFlux, Multithreading, JSON |
+| **Backend**    | Spring Boot, WebFlux, Multithreading, JSON, SSE |
 | **Frontend**   | HTML/CSS, JavaScript, D3.js       |
+
+### ⚡ SSE (Server-Sent Events)
+▸ Потоковая передача данных сервер→клиент  
+▸ Обновление состояния экосистемы в реальном времени
 
 ## 🌐 Визуализация
 Доступ через:  
@@ -50,6 +54,10 @@
 
 🖥️ **UA**  
 ![image](https://github.com/user-attachments/assets/ee9048c7-1f6c-4963-b70b-8e769524bc0c)
+
+### 📋 Логирование в Console
+![image](https://github.com/user-attachments/assets/6491aa84-8a42-484b-b54b-13d4b98e96ca)
+
 
 
 
